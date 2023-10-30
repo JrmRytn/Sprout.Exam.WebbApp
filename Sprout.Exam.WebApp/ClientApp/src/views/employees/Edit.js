@@ -176,7 +176,7 @@ export class EmployeeEdit extends Component {
       this.setState({ loadingSave: false ,validationErrors: {}});
       alert("Employee successfully saved");
       this.props.history.push("/employees/index");
-    } else if (response.status == 400) {
+    } else if (response.status === 400) {
       
       const errorResponse = await response.json();
       this.setState({ validationErrors: errorResponse.errors });

@@ -141,7 +141,7 @@ export class EmployeeCalculate extends Component {
                   )}
                 </span>
               </div>
-            ) : this.state.typeId == 2 ? (
+            ) : this.state.typeId === 2 ? (
               <div className="form-group col-md-6">
                 <label htmlFor="inputWorkDays4">Worked Days: </label>
                 <input
@@ -245,18 +245,15 @@ export class EmployeeCalculate extends Component {
     );
     if (response.status === 200) {
       const data = await response.json();
-      this.setState({ loadingCalculate: false, netIncome: data,validationErrors: {} });
-      console.log(requestOptions.body);
+      this.setState({ loadingCalculate: false, netIncome: data,validationErrors: {} }); 
 
-    } else if (response.status === 400) {
-      console.log(requestOptions.body);
+    } else if (response.status === 400) { 
       const errorResponse = await response.json();
-      this.setState({ validationErrors: errorResponse.errors });
-      console.log(errorResponse);
+      this.setState({ validationErrors: errorResponse.errors }); 
       this.setState({ loadingCalculate: false });
     } else {
       alert("There was an error occured.");
-      this.setState({ loadingCalculate: false, loadingCalculate: false });
+      this.setState({ loadingCalculate: false });
     }
   }
 
