@@ -1,0 +1,47 @@
+name: Publish 🚀
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+    - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '5.0.x'
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 'v18.17.1'
+
+      - name: Restore
+        run: dotnet restore ./Sprout.Exam.WebApp.sln 
+      - name: Build
+        run: dotnet build ./Sprout.Exam.WebApp.sln --configuration Release --no-restore
+
+      - name: Install Node.js Dependencies
+        run: |
+          cd ./Sprout.Exam.WebApp/ClientApp
+          npm install --force
+
+      - name: Install Node.js Dependencies
+        run: |
+          cd ./Sprout.Exam.WebApp/ClientApp
+          npm install --legacy-peer-deps
+
+      - name: Build React.js App
+        run: |
+          cd ./Sprout.Exam.WebApp/ClientApp
+          npm run build  
+
+      - name: Publish
+        run: dotnet publish ./Sprout.Exam.WebApp.sln --configuration release --no-build
