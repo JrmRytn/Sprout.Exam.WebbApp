@@ -32,12 +32,7 @@ jobs:
       - name: Install Node Dependencies
         run: |
           cd ./Sprout.Exam.WebApp/ClientApp 
-          npm install
-
-      - name: Install Node Dependencies
-        run: |
-          cd ./Sprout.Exam.WebApp/ClientApp 
-          npm audit fix --force
+          npm install 
 
       - name: Build React SPA
         run: |
