@@ -31,12 +31,12 @@ jobs:
       - name: Install Node.js Dependencies
         run: |
           cd ./Sprout.Exam.WebApp/ClientApp
-          npm install --force
-
+          npm install --force 
+          
       - name: Install Node.js Dependencies
         run: |
           cd ./Sprout.Exam.WebApp/ClientApp
-          npm install --legacy-peer-deps
+          npm audit fix --force
 
       - name: Build React.js App
         run: |
