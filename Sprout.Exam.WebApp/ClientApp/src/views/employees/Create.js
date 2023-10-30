@@ -172,7 +172,7 @@ export class EmployeeCreate extends Component {
       this.setState({ loadingSave: false ,validationErrors: {}});
       alert("Employee successfully saved");
       this.props.history.push("/employees/index");
-    } else if (response.status == 400) {
+    } else if (response.status === 400) {
       this.setState({ loadingSave: false }); 
       const errorResponse = await response.json();
 
