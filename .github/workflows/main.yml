@@ -26,13 +26,8 @@ jobs:
       - name: Restore
         run: dotnet restore ./Sprout.Exam.WebApp.sln 
       - name: Build
-        run: dotnet build ./Sprout.Exam.WebApp.sln --configuration Release --no-restore
-
-      - name: Install Node.js Dependencies
-        run: |
-          cd ./Sprout.Exam.WebApp/ClientApp 
-          npm audit fix --force 
-
+        run: dotnet build ./Sprout.Exam.WebApp.sln --configuration Release --no-restore  
+        
       - name: Build React.js App
         run: |
           cd ./Sprout.Exam.WebApp/ClientApp
