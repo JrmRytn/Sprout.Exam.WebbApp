@@ -1,3 +1,6 @@
+using Sprout.Exam.Business.Models;
+using Xunit;
+
 namespace Sprout.Exam.Business.Test.Models
 {
     public class EmployeeTest

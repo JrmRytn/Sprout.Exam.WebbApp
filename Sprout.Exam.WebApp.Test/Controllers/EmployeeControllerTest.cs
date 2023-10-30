@@ -8,6 +8,9 @@ using Sprout.Exam.Common.Enums;
 using Sprout.Exam.Business.DataTransferObjects;
 using Sprout.Exam.Business.Exceptions; 
 using Xunit;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace Sprout.Exam.WebApp.Test.Controllers
 {

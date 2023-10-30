@@ -1,3 +1,9 @@
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using Sprout.Exam.Business.DataTransferObjects;
+using Xunit;
+
 namespace Sprout.Exam.Business.Test.DataTransferObjects
 {
     public class EditEmployeeDtoTest

@@ -1,4 +1,7 @@
-using Sprout.Exam.Common.Enums; 
+using Sprout.Exam.Business.Exceptions;
+using Sprout.Exam.Business.Models;
+using Sprout.Exam.Common.Enums;
+using Xunit;
 namespace Sprout.Exam.Business.Test.Models
 {
     public class SalaryTest
