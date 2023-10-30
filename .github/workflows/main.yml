@@ -19,7 +19,7 @@ jobs:
           dotnet-version: '5.0.x'
 
       - name: Restore
-        run: dotnet restore restore ./Sprout.Exam.WebApp.sln
+        run: dotnet restore ./Sprout.Exam.WebApp.sln
 
       - name: Build
         run: dotnet build ./Sprout.Exam.WebApp.sln --configuration Release --no-restore
