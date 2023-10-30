@@ -1,33 +1,51 @@
-name: Publish 🚀
+name: Build and Deploy
 
 on:
-  workflow_dispatch:
   push:
     branches:
-    - main
+      - main
 
 jobs:
-  publish:
+  build_and_deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: '5.0.x'
+          dotnet-version: '5.0.x'  
+
+      - name: Restore .NET Dependencies
+        run: dotnet restore ./Sprout.Exam.WebApp.sln  
+
+      - name: Build .NET Project
+        run: dotnet build ./Sprout.Exam.WebApp.sln --configuration Release
 
       - name: Install Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 'v18.17.1'
+          node-version: 'v18.17.1'  
 
-      - name: Restore
-        run: dotnet restore ./Sprout.Exam.WebApp.sln 
-        
-      - name: Build
-        run: dotnet build ./Sprout.Exam.WebApp.sln --configuration Release --no-restore   
-        
-      - name: Publish
-        run: dotnet publish ./Sprout.Exam.WebApp.sln --configuration release --no-build
+      - name: Install Node Dependencies
+        run: |
+          cd ./Sprout.Exam.WebApp/ClientApp 
+          npm install
+
+      - name: Install Node Dependencies
+        run: |
+          cd ./Sprout.Exam.WebApp/ClientApp 
+          npm audit fix --force
+
+      - name: Build React SPA
+        run: |
+          cd ./Sprout.Exam.WebApp/ClientApp 
+          npm run build
+
+      - name: Publish .NET Project
+        run: dotnet publish ./Sprout.Exam.WebApp.sln.sln --configuration Release --output ./publish_output
+
+   
+
